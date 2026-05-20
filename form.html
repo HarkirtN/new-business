@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            display: flex;
+            height: 100vh;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #97cba9, #668ba4);
+        }
+
+        .container {
+            max-width: 700px;
+            width: 100%;
+            background-color: whitesmoke;
+            padding: 25px 30px;
+            border-radius: 5px;
+        }
+
+        .container .title {
+            font-size: large;
+            font-weight: 500;
+            position: relative;
+        }
+
+        .container .title::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            height: 3px;
+            width: 100px;
+            background: linear-gradient(135deg, #97cba9, #668ba4);
+        }
+
+        .container form .user-details {
+            display: grid;
+            grid-template-columns: 1fr;
+            justify-content: space-between;
+            margin: 20px 0 12px 0;
+        }
+
+        form .user-details .input-box {
+            margin-bottom: 15px;
+            width: 90%;
+        }
+
+        form .user-details .input-box .text-box {
+            height: 200px;
+        }
+
+        .user-details .input-box .details {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 5px;
+
+        }
+        .user-details .input-box input {
+            height: 45px;
+            width: 100%;
+            outline: none;
+            border-radius: 5px;
+            border: 1px solid #3c3d44;
+            padding-left: 15px;
+            font-size: 16px;
+            border-bottom-width: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .user-details .input-box input:focus,
+        .user-details .input-box input:valid {
+            border-color: #668ba4;
+        }
+
+        form .button-contact {
+            height: 45px;
+            margin: 45px 0;
+        }
+
+        form .button-contact input {
+            height: 100%;
+            width: 100%;
+            outline: none;
+            color: whitesmoke;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            background: linear-gradient(135deg, #97cba9, #668ba4);
+        }
+
+        form .button-contact input:hover {
+            border: 2px solid black;
+        }
+
+        /* interactive parts */
+
+        .hidden {
+            visibility: hidden;
+        }
+
+        .flex {
+            display: flex;
+        }
+
+        .items-center {
+            justify-content: center;
+            align-items: center;
+        }
+
+        .text-green{
+            color: green;
+        }
+
+        .text-red {
+            color: red;
+        }
+
+        .border-green {
+            border: 2px solid green;
+        }
+
+        .border-red {
+            border: 2px solid red;
+        }
+
+        @media screen and (max-width >584px) {
+            .container {
+                width: 100%;
+            }
+
+            form .user-details .input-box {
+            margin-bottom: 15px;
+            width: 100%;
+            }
+
+            .container form .user-details {
+                max-height: 300px;
+                overflow-y: scroll;
+            }
+        }
+     </style>
+</head>
+<body>
+    <div class="container">
+        <div class="Title">
+            <form action="/formsubmit" id="contactForm">
+                <div class="user-details">
+                    <div class="input-box formGroups">
+                        <label class="details"> Full Name </label>
+                        <div class="flex items-center">
+                                <input type="text" id="firstName" placeholder="Enter your name" required minlength="2" custommaxlength="10">
+                                <span class="error-icon hidden text-red"><i class="fa-regular fa-circle-exclamation"></i></span>
+                                <span class="success-icon hidden text-green"><i class="fa-solid fa-check"></i></span>
+                            </div>
+                        <div class="error text-red"></div>
+                    </div>
+                    <div class="input-box formGroups">
+                        <label class="details"> Email </label>
+                        <div class="flex items-center">
+                                <input type="text" placeholder="Enter your email" required pattern="^(.+)@(.+)$">
+                                <span class="error-icon hidden text-red"><i class="fa-regular fa-circle-exclamation"></i></span>
+                                <span class="success-icon hidden text-green"><i class="fa-solid fa-check"></i></span>
+                            </div>
+                        <div class="error text-red"></div>
+                    </div>
+                    <div class="input-box formGroups">
+                        <label class="details"> Contact number </label>
+                            <div class="flex items-center">
+                                <input type="text" placeholder="Enter your mobile number" required minlength="10" custommaxlength="13" pattern="/\d/">
+                                <span class="error-icon hidden text-red"><i class="fa-regular fa-circle-exclamation"></i></span>
+                                <span class="success-icon hidden text-green"><i class="fa-solid fa-check"></i></span>
+                            </div>
+                        <div class="error text-red"></div>
+                    </div>
+                    <div class="input-box formGroups">
+                        <label class="details"> Message </label>
+                        <input type="text" class="text-box" placeholder="Type message ..." required>
+                    </div>
+                </div>
+                <div class="button-contact">
+                    <input type="submit" value="Submit">
+                </div>
+            </form>
+        </div>
+    </div>
+ <script src="form.js"></script>   
+</body>
+</html>

@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hairdresser</title>
+    <style>
+        :root {
+            --whitesmoke: whitesmoke;
+            --green: #97cba9;
+            --blue: #668ba4;
+            --gray: #9a9a9a;
+            --onyx: #3c3d44;
+            --charcoal: #343c47;
+            --base-font-size: 1rem;
+        }
+
+        html {
+            box-sizing: border-box;
+        }
+
+        *, 
+        *::before, 
+        *::after {
+        box-sizing: inherit;
+        } 
+
+        body {
+            font-size: var(--base-font-size);
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: var(--whitesmoke);
+            color: var(--charcoal);
+            margin: auto;
+        }
+ /* navbar styling */
+        nav {
+            background-color: var(--whitesmoke);
+            box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        nav ul {
+            width: 100%;
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            align-items: center;
+        }
+
+        nav li {
+            height: 80px;
+        }
+
+        nav a {
+            height: 100%;
+            padding: 0 30px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            color: var(--charcoal);
+        }
+
+        nav a:hover {
+            background-color: rgba(245, 245, 245, 0.928);
+        }
+
+        nav li:first-child {
+            margin-right: auto;
+        }
+
+        .booking-btn {
+            border-color: var(--onyx);
+            background-color: transparent;
+            color: var(--charcoal);
+            text-transform: uppercase;
+            border-radius: 8px;
+            width: 300px;
+            height: 50px;
+            font-size: large;
+            
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            width: 250px;
+            z-index: 999;
+            background-color: rgba(255, 255, 255, 0.23);
+            backdrop-filter: blur(10px);
+            box-shadow: -10px 0 10px rgba(0, 0, 0, 0.1);
+            display: none;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+        }
+
+        .sidebar li {
+            width: 100%;
+        }
+
+        .sidebar a {
+            width: 100%;
+        }
+
+
+
+/* image styling */
+        main {
+        margin-top: 0;
+        margin-bottom: 0;
+        text-align: center;
+        }
+
+        .main-article {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        justify-content: space-between;
+        }
+
+        .main-article img {
+        object-fit: fill;
+        height: 900px;
+        width: 400px;
+        overflow: hidden;
+        }
+
+        h1 {
+            font-size: calc(var( --base-font-size) * 2);
+            text-transform: uppercase;
+            letter-spacing: 0.25em;
+            color: var(--charcoal);
+        }
+
+/* content */
+        .projects {
+            display: flex;
+            flex-flow: column nowrap; 
+            color: var(--whitesmoke);
+            gap: 0;
+            padding: 0.2rem;
+        }
+
+        .project {
+            background-color: var(--blue);
+            display: grid;
+            grid-template-columns: 1fr;
+            padding: 1rem;
+        }
+
+        h3 {
+            margin: 0;
+        }
+
+        ul svg {
+            width: 36px;
+            height: 36px;
+        }
+
+        .icons {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-flow: row wrap;
+            gap: 2rem;
+            justify-content: center;
+        }
+
+/* footer styling */
+        footer {
+            text-align: center;
+            padding-left: 1rem;
+            padding-bottom: 1rem;
+        }
+
+        .footer-text {
+            line-height: 1.5;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        .footer-text-box ul {
+            font-size: calc(var(--base-font-size) * 0.85 );
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .footer-text-box li {
+            line-height: 2;
+        }
+
+        .footer-text-box .icons .social {
+            fill: var(--onyx);
+        }
+
+        .footer-text-box .icons .social:hover {
+            fill: var(--blue);
+        }
+
+/* breakpoints */
+        @media screen and (max-width >800px) {
+            .hideOnMobile {
+                display: none;
+            }
+        }
+        @media (min-width: 750px) {
+            :root {
+                --base-font-size: 1.125rem;
+            }
+
+            .main-article img {
+            max-height: 500px;
+            margin: 0 0 0 auto; 
+            object-fit: fill;
+            object-position: none;
+            height: auto;
+            width: auto;
+            overflow: auto;
+            }
+
+            .icons {
+                justify-content: flex-start;
+            }
+
+            footer {
+                text-align: left;
+            }
+
+            .footer-text {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media screen and (max-width >400px) {
+            .sidebar {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+   <div class="wrapper">
+    <nav>
+            <ul>
+                <li onclick="showSideBar()"><a href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><!--!Font Awesome Free v7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.--><path d="M96 160C96 142.3 110.3 128 128 128L512 128C529.7 128 544 142.3 544 160C544 177.7 529.7 192 512 192L128 192C110.3 192 96 177.7 96 160zM96 320C96 302.3 110.3 288 128 288L512 288C529.7 288 544 302.3 544 320C544 337.7 529.7 352 512 352L128 352C110.3 352 96 337.7 96 320zM544 480C544 497.7 529.7 512 512 512L128 512C110.3 512 96 497.7 96 480C96 462.3 110.3 448 128 448L512 448C529.7 448 544 462.3 544 480z"/></svg></a></li>
+                <li><h1>Raj's salon </h1></li>
+                <li><button class="booking-btn" class="hideOnMobile"> Book now </button></li>
+            </ul>
+            <ul class="sidebar">
+                <li onclick="hideSideBar()"><a href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><!--!Font Awesome Free v7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.--><path d="M504.6 148.5C515.9 134.9 514.1 114.7 500.5 103.4C486.9 92.1 466.7 93.9 455.4 107.5L320 270L184.6 107.5C173.3 93.9 153.1 92.1 139.5 103.4C125.9 114.7 124.1 134.9 135.4 148.5L278.3 320L135.4 491.5C124.1 505.1 125.9 525.3 139.5 536.6C153.1 547.9 173.3 546.1 184.6 532.5L320 370L455.4 532.5C466.7 546.1 486.9 547.9 500.5 536.6C514.1 525.3 515.9 505.1 504.6 491.5L361.7 320L504.6 148.5z"/></svg></a></li>
+                <li> <a href="#">About us</a></li>
+                <li> <a href="#">Pricing</a></li>
+                <li> <a href="#">Contact</a></li>
+            </ul>    
+    </nav>
+    <article class="main-article"> 
+            <img src="hair2.jpg">
+            <img src="hair1.jpg">
+            <img src="hair3.jpg">
+            <img src="hair4.jpg">
+    </article>
+    <main>
+        <div class="projects">
+            <article class="project">
+                <h3>BEST VERSION OF YOU</h3>
+                <p>At Raj's salon, we promise you will look and feel the best version of you. I've got 15+ years of experience in 
+                    the beauty industry. My ethos is carefully listening to my clients 'wants' and creating a look that suits you. 
+                </p>
+            </article>
+            <article class="project"> </article>
+        </div>
+    </main>
+    <footer>
+        <div class="footer-text">
+            <div class="footer-text-box">
+                <h3>Contact details</h3>
+                <ul>
+                    <li> 021 123 456</li>
+                    <li> rajbeer_kaur01@outlook.com </li>
+                </ul>
+            </div>
+            <div class="footer-text-box">
+                <h3>Location</h3>
+                <ul>
+                    <li>5 wyena grove,</li>
+                    <li>Epping,</li>
+                    <li>Victoria 3075</li>
+                </ul>
+            </div>
+            <div class="footer-text-box">
+                <h3>Socials</h3>
+                <ul class="icons">
+                    <li>
+                        <a href=""><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><!--!Font Awesome Free v7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.--><path d="M320.3 205C256.8 204.8 205.2 256.2 205 319.7C204.8 383.2 256.2 434.8 319.7 435C383.2 435.2 434.8 383.8 435 320.3C435.2 256.8 383.8 205.2 320.3 205zM319.7 245.4C360.9 245.2 394.4 278.5 394.6 319.7C394.8 360.9 361.5 394.4 320.3 394.6C279.1 394.8 245.6 361.5 245.4 320.3C245.2 279.1 278.5 245.6 319.7 245.4zM413.1 200.3C413.1 185.5 425.1 173.5 439.9 173.5C454.7 173.5 466.7 185.5 466.7 200.3C466.7 215.1 454.7 227.1 439.9 227.1C425.1 227.1 413.1 215.1 413.1 200.3zM542.8 227.5C541.1 191.6 532.9 159.8 506.6 133.6C480.4 107.4 448.6 99.2 412.7 97.4C375.7 95.3 264.8 95.3 227.8 97.4C192 99.1 160.2 107.3 133.9 133.5C107.6 159.7 99.5 191.5 97.7 227.4C95.6 264.4 95.6 375.3 97.7 412.3C99.4 448.2 107.6 480 133.9 506.2C160.2 532.4 191.9 540.6 227.8 542.4C264.8 544.5 375.7 544.5 412.7 542.4C448.6 540.7 480.4 532.5 506.6 506.2C532.8 480 541 448.2 542.8 412.3C544.9 375.3 544.9 264.5 542.8 227.5zM495 452C487.2 471.6 472.1 486.7 452.4 494.6C422.9 506.3 352.9 503.6 320.3 503.6C287.7 503.6 217.6 506.2 188.2 494.6C168.6 486.8 153.5 471.7 145.6 452C133.9 422.5 136.6 352.5 136.6 319.9C136.6 287.3 134 217.2 145.6 187.8C153.4 168.2 168.5 153.1 188.2 145.2C217.7 133.5 287.7 136.2 320.3 136.2C352.9 136.2 423 133.6 452.4 145.2C472 153 487.1 168.1 495 187.8C506.7 217.3 504 287.3 504 319.9C504 352.5 506.7 422.6 495 452z" class="social"/></svg></a>
+                    </li>
+                    <li>
+                        <a href=""><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><!--!Font Awesome Free v7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.--><path d="M160 96C124.7 96 96 124.7 96 160L96 480C96 515.3 124.7 544 160 544L258.2 544L258.2 398.2L205.4 398.2L205.4 320L258.2 320L258.2 286.3C258.2 199.2 297.6 158.8 383.2 158.8C399.4 158.8 427.4 162 438.9 165.2L438.9 236C432.9 235.4 422.4 235 409.3 235C367.3 235 351.1 250.9 351.1 292.2L351.1 320L434.7 320L420.3 398.2L351 398.2L351 544L480 544C515.3 544 544 515.3 544 480L544 160C544 124.7 515.3 96 480 96L160 96z" class="social"/></svg></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+   </div> 
+   <script> 
+    function showSideBar() {
+        const sidebar = document.querySelector('.sidebar');
+        sidebar.style.display = 'flex';
+    }
+
+    function hideSideBar() {
+        const hideBar = document.querySelector('.sidebar');
+        hideBar.style.display = 'none';
+    }
+   </script>
+</body>
+</html>
