@@ -13,31 +13,35 @@ export function initNav() {
 
     let selectedView = "month";
     let selectedDate = today();
+
+    previousButtonElement.addEventListener("click", () => {
+        previousButtonElement.dispatchEvent (new CustomEvent("date-change", {
+            detail: {
+                date: getPreviousDate(selectedView, selectedDate)
+            },
+            bubbles: true
+            }));
+    });
+
+    nextButtonElemment.addEventListener("click", () => {
+        nextButtonElemment.dispatchEvent (new CustomEvent("date-change", {
+            detail: {
+                date: getNextDate(selectedView, selectedDate)
+            },
+            bubbles: true
+            }));
+    });
+
     for (const button of todayButtonElements) {
         button.addEventListener("click", () => {
+            console.log("Today button clicked");
             button.dispatchEvent (new CustomEvent("date-change", {
                 detail: {
                     date:today()
                 },
                 bubbles: true
              }));
-        });  
-        previousButtonElement.addEventListener("click", () => {
-            previousButtonElement.dispatchEvent (new CustomEvent("date-change", {
-                detail: {
-                    date: getPreviousDate(selectedView, selectedDate)
-                },
-                bubbles: true
-             }));
         }); 
-        nextButtonElemment.addEventListener("click", () => {
-            nextButtonElemment.dispatchEvent (new CustomEvent("date-change", {
-                detail: {
-                    date: getNextDate(selectedView, selectedDate)
-                },
-                bubbles: true
-             }));
-        });    
     }
 
     document.addEventListener("view-change", (event) => {
@@ -46,7 +50,6 @@ export function initNav() {
     
     document.addEventListener("date-change", (event) => {
         selectedDate = event.detail.date;
-        console.log("Selected date changed to ", selectedDate);
         refreshDateElement(dateButtonElemment, selectedDate);
     });
 
@@ -54,7 +57,6 @@ export function initNav() {
 }
 
 function refreshDateElement( dateButtonElement, selectedDate) {
-    console.log(dateFormatter, selectedDate);
     dateButtonElement.textContent = dateFormatter.format(selectedDate);
 }
 
